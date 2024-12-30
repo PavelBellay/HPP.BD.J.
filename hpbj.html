@@ -9,18 +9,19 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #c0392b, #f39c12); /* Festive red gradient */
+            background: linear-gradient(to bottom, #c0392b, #f39c12);
             text-align: center;
             color: #fff;
-            overflow: hidden; /* To hide snowflakes going off-screen */
+            overflow: hidden;
+            min-height: 100vh;
         }
         .container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.2); /* Semi-transparent white box */
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
             animation: fadeIn 1.5s ease-out;
         }
@@ -29,23 +30,23 @@
             to { opacity: 1; }
         }
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 3rem;
+            margin-bottom: 20px;
         }
         p {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
         }
         .logo img {
-            max-width: 120px;
+            max-width: 200px;
             height: auto;
             border-radius: 50%;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
         }
         img {
             max-width: 100%;
             height: auto;
             border-radius: 10px;
-            margin-top: 20px;
+            margin-top: 30px;
             animation: zoomIn 1.5s ease-out;
         }
         @keyframes zoomIn {
@@ -56,21 +57,53 @@
                 transform: scale(1);
             }
         }
-        /* Snowflake animation */
+        .button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            background-color: #27ae60;
+            color: #fff;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        .button:hover {
+            background-color: #2ecc71;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+        }
+        #surprise {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.8rem;
+            color: #f1c40f;
+        }
+
+        /* Snowflake Styles */
         .snowflake {
             position: fixed;
-            top: -10px;
-            left: 50%;
+            top: -10px; /* Start slightly above the visible area */
+            left: 50%; /* Initial horizontal position */
             z-index: 9999;
             pointer-events: none;
             opacity: 0.8;
             animation: fall 10s linear infinite, drift 5s ease-in-out infinite;
         }
+
+        /* Fall downwards */
         @keyframes fall {
+            from {
+                transform: translateY(-10vh); /* Start slightly above the viewport */
+            }
             to {
-                transform: translateY(100vh);
+                transform: translateY(100vh); /* End below the viewport */
             }
         }
+
+        /* Horizontal drifting motion */
         @keyframes drift {
             50% {
                 transform: translateX(-20px);
@@ -83,10 +116,10 @@
 </head>
 <body>
     <!-- Falling Snowflakes -->
-    <div class="snowflake">❄</div>
-    <div class="snowflake" style="animation-delay: 2s;">❄</div>
-    <div class="snowflake" style="animation-delay: 4s;">❄</div>
-    <div class="snowflake" style="animation-delay: 6s;">❄</div>
+    <div class="snowflake" style="left: 20%;">❄</div>
+    <div class="snowflake" style="left: 40%; animation-delay: 2s;">❄</div>
+    <div class="snowflake" style="left: 60%; animation-delay: 4s;">❄</div>
+    <div class="snowflake" style="left: 80%; animation-delay: 6s;">❄</div>
 
     <div class="container">
         <div class="logo">
@@ -95,7 +128,16 @@
         <h1>Merry Christmas, Love!</h1>
         <p>Wishing you a holiday season filled with love, joy, and all things wonderful. You are my greatest gift!</p>
         <img src="christmas_image.jpg" alt="Merry Christmas">
+        <!-- Interactive Button -->
+        <button class="button" onclick="revealSurprise()">Click for a Christmas Surprise!</button>
+        <div id="surprise">🎅 Ho Ho Ho! You’re my favorite gift of all! 🎄</div>
     </div>
+
+    <script>
+        function revealSurprise() {
+            const surprise = document.getElementById('surprise');
+            surprise.style.display = 'block';
+        }
+    </script>
 </body>
 </html>
-
