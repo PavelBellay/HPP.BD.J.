@@ -5,96 +5,160 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merry Christmas!</title>
     <style>
+        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #c0392b, #f39c12); /* Festive red gradient */
+            background: linear-gradient(to bottom, #c0392b, #f39c12);
             text-align: center;
             color: #fff;
-            overflow: hidden; /* To hide snowflakes going off-screen */
-        }
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.2); /* Semi-transparent white box */
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            animation: fadeIn 1.5s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            overflow: hidden;
+            min-height: 100vh;
+            perspective: 1px;
+            overflow-x: hidden;
         }
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 3rem;
+            margin-top: 20px;
         }
         p {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
         }
-        .logo img {
-            max-width: 120px;
-            height: auto;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-top: 20px;
-            animation: zoomIn 1.5s ease-out;
-        }
-        @keyframes zoomIn {
-            from {
-                transform: scale(0);
-            }
-            to {
-                transform: scale(1);
-            }
-        }
-        /* Snowflake animation */
+
+        /* Snowfall Animation */
         .snowflake {
             position: fixed;
             top: -10px;
-            left: 50%;
             z-index: 9999;
             pointer-events: none;
-            opacity: 0.8;
+            opacity: calc(0.5 + 0.5 * var(--size));
+            font-size: calc(10px + 20 * var(--size));
             animation: fall 10s linear infinite, drift 5s ease-in-out infinite;
         }
         @keyframes fall {
+            from {
+                transform: translateY(-10vh) rotate(0deg);
+            }
             to {
-                transform: translateY(100vh);
+                transform: translateY(100vh) rotate(360deg);
             }
         }
         @keyframes drift {
-            50% {
-                transform: translateX(-20px);
-            }
-            100% {
-                transform: translateX(20px);
-            }
+            50% { transform: translateX(-20px); }
+            100% { transform: translateX(20px); }
         }
+
+        /* Lights Animation */
+        .lights {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px auto;
+        }
+        .bulb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            animation: glow 1.5s infinite alternate;
+        }
+        .red { background-color: red; }
+        .green { background-color: green; animation-delay: 0.5s; }
+        .yellow { background-color: yellow; animation-delay: 1s; }
+        .blue { background-color: blue; animation-delay: 1.5s; }
+        @keyframes glow {
+            from { box-shadow: 0 0 5px #fff; }
+            to { box-shadow: 0 0 15px #fff; }
+        }
+
+        /* Flying Santa Sleigh */
+        #sleigh {
+            position: absolute;
+            top: 10%;
+            left: -10%;
+            font-size: 2rem;
+            animation: fly 10s linear infinite;
+        }
+        @keyframes fly {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(110%); }
+        }
+
+        /* Presents */
+        .present {
+            font-size: 2rem;
+            margin: 20px auto;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        /* Countdown */
+        #countdown {
+            margin-top: 20px;
+        }
+        #timer {
+            font-size: 2rem;
+            color: #f1c40f;
+        }
+
     </style>
 </head>
 <body>
-    <!-- Falling Snowflakes -->
-    <div class="snowflake">❄</div>
-    <div class="snowflake" style="animation-delay: 2s;">❄</div>
-    <div class="snowflake" style="animation-delay: 4s;">❄</div>
-    <div class="snowflake" style="animation-delay: 6s;">❄</div>
+    <!-- Snowflakes -->
+    <div class="snowflake" style="--size: 0.8;">❄</div>
+    <div class="snowflake" style="--size: 0.5; animation-delay: 2s;">❄</div>
+    <div class="snowflake" style="--size: 0.6; animation-delay: 4s;">❄</div>
+    <div class="snowflake" style="--size: 1; animation-delay: 6s;">❄</div>
 
-    <div class="container">
-        <div class="logo">
-            <img src="christmas_logo.png" alt="Christmas Logo">
-        </div>
-        <h1>Merry Christmas, Love!</h1>
-        <p>Wishing you a holiday season filled with love, joy, and all things wonderful. You are my greatest gift!</p>
-        <img src="christmas_image.jpg" alt="Merry Christmas">
+    <!-- Christmas Lights -->
+    <div class="lights">
+        <span class="bulb red"></span>
+        <span class="bulb green"></span>
+        <span class="bulb yellow"></span>
+        <span class="bulb blue"></span>
     </div>
+
+    <!-- Flying Santa Sleigh -->
+    <div id="sleigh">🎅🏻✨</div>
+
+    <!-- Greeting -->
+    <h1>Merry Christmas, Love!</h1>
+    <p>Wishing you a holiday season filled with love, joy, and all things wonderful. You are my greatest gift!</p>
+
+    <!-- Present -->
+    <div class="present" onclick="openPresent(this)">🎁</div>
+
+    <!-- Countdown Timer -->
+    <div id="countdown">
+        <h2>Time until Christmas:</h2>
+        <p id="timer">00:00:00</p>
+    </div>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const now = new Date();
+            const christmas = new Date(now.getFullYear(), 11, 25);
+            const diff = christmas - now;
+
+            const hours = String(Math.floor(diff / (1000 * 60 * 60))).padStart(2, '0');
+            const minutes = String(Math.floor((diff / (1000 * 60)) % 60)).padStart(2, '0');
+            const seconds = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+
+            document.getElementById("timer").textContent = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateCountdown, 1000);
+
+        // Open Present
+        function openPresent(present) {
+            present.innerHTML = "🎄 Merry Christmas!";
+            present.style.animation = "none";
+        }
+    </script>
 </body>
 </html>
