@@ -3,56 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday!</title>
+    <title>Merry Christmas!</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #333; /* Dark gray background */
+            background: linear-gradient(to bottom, #c0392b, #f39c12); /* Festive red gradient */
             text-align: center;
+            color: #fff;
+            overflow: hidden; /* To hide snowflakes going off-screen */
         }
         .container {
             max-width: 600px;
             margin: 50px auto;
             padding: 20px;
-            background-color: #6ab04c; /* Green color */
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent white box */
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1s ease-out;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1.5s ease-out;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        .logo {
-            margin-bottom: 20px;
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2rem;
         }
         .logo img {
-            max-width: 100px;
+            max-width: 120px;
             height: auto;
             border-radius: 50%;
-        }
-        h1, p {
-            color: #fff; /* White text */
-            animation: slideIn 1s ease-out;
-        }
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
         }
         img {
             max-width: 100%;
             height: auto;
-            border-radius: 5px;
+            border-radius: 10px;
             margin-top: 20px;
-            animation: zoomIn 1s ease-out;
+            animation: zoomIn 1.5s ease-out;
         }
         @keyframes zoomIn {
             from {
@@ -62,16 +56,46 @@
                 transform: scale(1);
             }
         }
+        /* Snowflake animation */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            left: 50%;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.8;
+            animation: fall 10s linear infinite, drift 5s ease-in-out infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        @keyframes drift {
+            50% {
+                transform: translateX(-20px);
+            }
+            100% {
+                transform: translateX(20px);
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Falling Snowflakes -->
+    <div class="snowflake">❄</div>
+    <div class="snowflake" style="animation-delay: 2s;">❄</div>
+    <div class="snowflake" style="animation-delay: 4s;">❄</div>
+    <div class="snowflake" style="animation-delay: 6s;">❄</div>
+
     <div class="container">
         <div class="logo">
-            <img src="logo.png" alt="Logo">
+            <img src="christmas_logo.png" alt="Christmas Logo">
         </div>
-        <h1>Happy Birthday!</h1>
-        <p>Wishing you a life filled with love, self appreciation, and joy!</p>
-        <img src="happy_birthday_image.jpg" alt="Happy Birthday">
+        <h1>Merry Christmas, Love!</h1>
+        <p>Wishing you a holiday season filled with love, joy, and all things wonderful. You are my greatest gift!</p>
+        <img src="christmas_image.jpg" alt="Merry Christmas">
     </div>
 </body>
 </html>
+
