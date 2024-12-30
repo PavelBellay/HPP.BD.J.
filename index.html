@@ -131,27 +131,6 @@
     <!-- Present -->
     <div class="present" onclick="openPresent(this)">🎁</div>
 
-    <!-- Countdown Timer -->
-    <div id="countdown">
-        <h2>Time until Christmas:</h2>
-        <p id="timer">00:00:00</p>
-    </div>
-
-    <script>
-        // Countdown Timer
-        function updateCountdown() {
-            const now = new Date();
-            const christmas = new Date(now.getFullYear(), 11, 25);
-            const diff = christmas - now;
-
-            const hours = String(Math.floor(diff / (1000 * 60 * 60))).padStart(2, '0');
-            const minutes = String(Math.floor((diff / (1000 * 60)) % 60)).padStart(2, '0');
-            const seconds = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
-
-            document.getElementById("timer").textContent = `${hours}:${minutes}:${seconds}`;
-        }
-        setInterval(updateCountdown, 1000);
-
         // Open Present
         function openPresent(present) {
             present.innerHTML = "🎄 Merry Christmas!";
