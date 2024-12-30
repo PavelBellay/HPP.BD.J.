@@ -15,8 +15,7 @@
             color: #fff;
             overflow: hidden;
             min-height: 100vh;
-            perspective: 1px;
-            overflow-x: hidden;
+            position: relative;
         }
         h1 {
             font-size: 3rem;
@@ -26,9 +25,9 @@
             font-size: 1.5rem;
         }
 
-        /* Snowfall Animation */
+        /* Snowflake Animation */
         .snowflake {
-            position: fixed;
+            position: absolute;
             top: -10px;
             z-index: 9999;
             pointer-events: none;
@@ -37,12 +36,8 @@
             animation: fall 10s linear infinite, drift 5s ease-in-out infinite;
         }
         @keyframes fall {
-            from {
-                transform: translateY(-10vh) rotate(0deg);
-            }
-            to {
-                transform: translateY(100vh) rotate(360deg);
-            }
+            from { transform: translateY(-10vh) rotate(0deg); }
+            to { transform: translateY(100vh) rotate(360deg); }
         }
         @keyframes drift {
             50% { transform: translateX(-20px); }
@@ -110,10 +105,10 @@
 </head>
 <body>
     <!-- Snowflakes -->
-    <div class="snowflake" style="--size: 0.8;">❄</div>
-    <div class="snowflake" style="--size: 0.5; animation-delay: 2s;">❄</div>
-    <div class="snowflake" style="--size: 0.6; animation-delay: 4s;">❄</div>
-    <div class="snowflake" style="--size: 1; animation-delay: 6s;">❄</div>
+    <div class="snowflake" style="--size: 0.8; left: 10%;">❄</div>
+    <div class="snowflake" style="--size: 0.5; left: 30%; animation-delay: 2s;">❄</div>
+    <div class="snowflake" style="--size: 0.6; left: 50%; animation-delay: 4s;">❄</div>
+    <div class="snowflake" style="--size: 1; left: 70%; animation-delay: 6s;">❄</div>
 
     <!-- Christmas Lights -->
     <div class="lights">
@@ -129,6 +124,9 @@
     <!-- Greeting -->
     <h1>Merry Christmas, Love!</h1>
     <p>Wishing you a holiday season filled with love, joy, and all things wonderful. You are my greatest gift!</p>
+
+    <!-- Images -->
+    <img src="your-image-name.jpg" alt="Christmas Image" style="width: 300px; margin-top: 20px;">
 
     <!-- Present -->
     <div class="present" onclick="openPresent(this)">🎁</div>
